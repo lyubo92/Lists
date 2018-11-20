@@ -1,0 +1,32 @@
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class mergingList {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        List<Integer> first = Arrays.stream(input.nextLine().split("\\s+")).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> second = Arrays.stream(input.nextLine().split("\\s+")).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> result = new ArrayList<>();
+        List<Integer> bigger = new ArrayList<>();
+        int minLenght = 0;
+        if (first.size() >= second.size()){
+            minLenght = second.size();
+            bigger = first;
+        }else{
+            minLenght = first.size();
+            bigger = second;
+        }
+        for (int i = 0; i < minLenght; i++) {
+            result.add(first.get(i));
+            result.add(second.get(i));
+        }
+        for (int i = minLenght; i < bigger.size(); i++) {
+            result.add(bigger.get(i));
+        }
+        result.stream().forEach(e -> System.out.print(e + " "));
+    }
+}
